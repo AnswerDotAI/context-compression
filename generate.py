@@ -6,6 +6,7 @@
 import itertools
 import sys
 import time
+import json
 from pathlib import Path
 from typing import Optional
 
@@ -256,8 +257,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--prompt",
         type=str,
-        default="long_prompt_short_output.txt",
-        help="Input prompt. If it ends in .txt, we will load the prompt from the ./prompts dir.",
+        default="long_prompt_short_output.json",
+        help="Input prompt. If it ends in .json, we will load the prompt from the ./prompts dir.",
     )
 
     parser.add_argument(
@@ -283,7 +284,7 @@ if __name__ == "__main__":
         "--checkpoint_path",
         type=Path,
         default=Path(__file__).resolve().parent
-        / "checkpoints/meta-llama/Meta-Llama-3-8B-Instruct/model.pth",
+        / "checkpoints/meta-Transformer/Transformer-2-7b-chat-hf/model.pth",
         help="Model checkpoint path.",
     )
     parser.add_argument(
@@ -312,10 +313,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.prompt.endswith(".txt"):
+    if args.prompt.endswith(".json"):
         prompt_fn = Path(__file__).resolve().parent / "prompts" / args.prompt
         with open(prompt_fn) as fd:
-            args.prompt = fd.read().strip()
+            args.prompt = json.load(fd)
 
     cache_compatibility(args)
 
@@ -335,3 +336,4 @@ if __name__ == "__main__":
         args.device,
         cache_kwargs=vars(args),
     )
+

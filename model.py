@@ -139,6 +139,36 @@ transformer_configs = {
         attention_bias=True,
         norm_eps=1e-6,
     ),
+    "Meta-Llama-3-8B-gist-finetune-instruction-and-input": dict(
+        block_size=8192,
+        n_layer=32,
+        n_head=32,
+        n_local_heads=8,
+        dim=4096,
+        intermediate_size=14336,
+        vocab_size=128257,
+        rope_base=500000
+    ),
+    "Meta-Llama-3-8B-gist-finetune-instruction-only": dict(
+        block_size=8192,
+        n_layer=32,
+        n_head=32,
+        n_local_heads=8,
+        dim=4096,
+        intermediate_size=14336,
+        vocab_size=128257,
+        rope_base=500000
+    ),
+    "Meta-Llama-3-8B-gist-finetune-input-only": dict(
+        block_size=8192,
+        n_layer=32,
+        n_head=32,
+        n_local_heads=8,
+        dim=4096,
+        intermediate_size=14336,
+        vocab_size=128257,
+        rope_base=500000
+    ),
 }
 
 
